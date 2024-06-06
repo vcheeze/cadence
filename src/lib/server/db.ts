@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { withAccelerate } from '@prisma/extension-accelerate';
+import { PrismaClient } from '@prisma/client/edge';
 
-export const db = new PrismaClient().$extends(withAccelerate());
+export const db = new PrismaClient();
 
 export interface DatabaseUser {
   id: string;
