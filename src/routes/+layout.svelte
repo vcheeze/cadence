@@ -1,11 +1,7 @@
 <script lang="ts">
-	import ThemeSwitch from '$lib/components/ThemeSwitch.svelte';
-import '../app.css';
-	import { ModeWatcher } from 'mode-watcher';
+  import { ModeWatcher } from 'mode-watcher';
+  import '../app.css';
 </script>
 
 <ModeWatcher />
-<ThemeSwitch />
 <slot></slot>
-
-<style></style>
