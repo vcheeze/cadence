@@ -73,7 +73,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
       });
     }
     // unknown error
-    return new Response(null, {
+    return new Response(JSON.stringify(e), {
       status: 500
     });
   }
