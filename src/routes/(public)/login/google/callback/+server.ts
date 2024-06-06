@@ -66,7 +66,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
       }
     });
   } catch (e) {
-    // console.error('error :>> ', e);
+    console.error('error :>> ', e);
     if (e instanceof OAuth2RequestError) {
       return new Response(null, {
         status: 400
