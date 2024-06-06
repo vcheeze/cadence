@@ -8,7 +8,9 @@ import {
   GOOGLE_OAUTH_REDIRECT_URI
 } from '$env/static/private';
 import { Google } from 'arctic';
-import { db, type DatabaseUser } from './db';
+import { db } from './db';
+
+import type { DatabaseUser } from './db';
 
 const adapter = new PrismaAdapter(db.session, db.user);
 
