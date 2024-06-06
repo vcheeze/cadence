@@ -1,0 +1,26 @@
+{
+	"short_name": "Cadence",
+	"name": "Cadence",
+	"icons": [
+		{
+			"src": "/images/logo.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any"
+		},
+		{
+			"src": "/images/logo.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
+		}
+	],
+	"id": "/",
+	"start_url": "/",
+	"background_color": "#000817",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#0ea5e9",
+	"shortcuts": [],
+	"description": "Shee music, unified."
+}

@@ -7,7 +7,7 @@
 <div class="grid h-screen sm:grid-cols-2">
   <div
     class={clsx(
-      $mode === 'dark' ? 'bg-[url("/img/login.jpg")]' : 'bg-[url("/img/login_light.jpeg")]',
+      $mode === 'dark' ? 'bg-[url("/images/login.jpg")]' : 'bg-[url("/images/login_light.jpeg")]',
       'bg-cover bg-center bg-no-repeat'
     )}
   >
