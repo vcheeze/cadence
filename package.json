@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "pnpm dlx prisma generate --no-engine && vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -44,6 +44,7 @@
 	"dependencies": {
 		"@lucia-auth/adapter-prisma": "^4.0.1",
 		"@prisma/client": "^5.15.0",
+		"@prisma/extension-accelerate": "^1.1.0",
 		"arctic": "^1.9.0",
 		"bits-ui": "^0.21.10",
 		"clsx": "^2.1.1",
