@@ -4,7 +4,7 @@
   import { Button } from '$lib/components/ui/button';
 </script>
 
-<div class="grid h-screen grid-cols-2">
+<div class="grid h-screen sm:grid-cols-2">
   <div
     class={clsx(
       $mode === 'dark' ? 'bg-[url("/img/login.jpg")]' : 'bg-[url("/img/login_light.jpeg")]',
