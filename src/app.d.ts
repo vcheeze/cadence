@@ -6,6 +6,17 @@ declare global {
 			user: import('$lib/server/auth').SessionValidationResult['user'];
 			session: import('$lib/server/auth').SessionValidationResult['session'];
 		}
+
+		// https://developers.cloudflare.com/pages/framework-guides/deploy-a-svelte-kit-site/#sveltekit-cloudflare-configuration
+		interface Platform {
+			env: {
+					COUNTER: DurableObjectNamespace;
+			};
+			context: {
+					waitUntil(promise: Promise<any>): void;
+			};
+			caches: CacheStorage & { default: Cache }
+	}
 	}
 }
 
