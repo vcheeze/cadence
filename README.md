@@ -1,38 +1,16 @@
-# sv
+# Cadence
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Keep yourself and others accountable in your regular Bible reading!
 
-## Creating a project
+## v1 Roadmap
 
-If you're seeing this, you've probably already done this step. Congrats!
+- [ ] Create new Reading Plan
+- [ ] Share your progress via unique link
+- [ ] Build onboarding flow to ask some questions to gather key feedback such as intention of using the app, etc.
+- [ ] Build landing page
 
-```bash
-# create a new project in the current directory
-npx sv create
+### Notes
 
-# create a new project in my-app
-npx sv create my-app
-```
+#### Scheduling Reading Entries
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+In the case of `monthly` frequency, say a Reading Plan has 25 days per month to read, all of those Reading Entries will have their `scheduledDate` set as the last day of the month for now. Need to think more about whether there is a better way to track progress here.
