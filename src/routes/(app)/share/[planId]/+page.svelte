@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { Card } from '$lib/components/ui/card';
   import { Progress } from '$lib/components/ui/progress';
   import { Calendar } from '$lib/components/ui/calendar';
@@ -35,4 +35,5 @@
       class="w-full"
     />
   </Card>
-</div>
+</div> -->
+<div>Share</div>
