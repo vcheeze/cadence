@@ -65,8 +65,8 @@
 									<Card.Root
 										{...props}
 										class={cn(
-											'hover:cursor-pointer hover:bg-stone-950/5 hover:shadow',
-											plan.id === $formData.templateId && 'border-stone-400 bg-stone-50'
+											'hover:cursor-pointer hover:bg-stone-950/5 hover:shadow dark:hover:bg-stone-50/5',
+											plan.id === $formData.templateId && 'border-stone-400 bg-stone-50 dark:bg-stone-900'
 										)}
 										onclick={() => {
 											const planAlreadySelected = $formData.templateId === plan.id;
