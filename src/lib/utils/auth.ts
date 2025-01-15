@@ -1,6 +1,6 @@
 const SALT_SIZE = 16; // bytes
 const KEY_SIZE = 256; // bits
-const ITERATIONS = 310000; // OWASP recommended minimum
+const ITERATIONS = 100000; // PBKDF2 maximum
 
 function encodeBase64(buffer: ArrayBuffer): string {
 	return btoa(String.fromCharCode(...new Uint8Array(buffer)));
