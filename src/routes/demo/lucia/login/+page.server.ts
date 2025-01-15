@@ -1,10 +1,14 @@
-import { hash, verify } from '@node-rs/argon2';
-import { encodeBase32LowerCase } from '@oslojs/encoding';
 import { fail, redirect } from '@sveltejs/kit';
+
+// import { hash, verify } from '@node-rs/argon2';
+import { encodeBase32LowerCase } from '@oslojs/encoding';
 import { eq } from 'drizzle-orm';
+
 import * as auth from '$lib/server/auth';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
+import { generateSalt, hash, validatePassword, validateUsername, verify } from '$lib/utils/auth';
+
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -36,12 +40,13 @@ export const actions: Actions = {
 			return fail(400, { message: 'Incorrect username or password' });
 		}
 
-		const validPassword = await verify(existingUser.passwordHash, password, {
-			memoryCost: 19456,
-			timeCost: 2,
-			outputLen: 32,
-			parallelism: 1
-		});
+		// const validPassword = await verify(existingUser.passwordHash, password, {
+		// 	memoryCost: 19456,
+		// 	timeCost: 2,
+		// 	outputLen: 32,
+		// 	parallelism: 1
+		// });
+		const validPassword = await verify(password, existingUser.passwordHash);
 		if (!validPassword) {
 			return fail(400, { message: 'Incorrect username or password' });
 		}
@@ -65,16 +70,18 @@ export const actions: Actions = {
 		}
 
 		const userId = generateUserId();
-		const passwordHash = await hash(password, {
-			// recommended minimum parameters
-			memoryCost: 19456,
-			timeCost: 2,
-			outputLen: 32,
-			parallelism: 1
-		});
+		// const passwordHash = await hash(password, {
+		// 	// recommended minimum parameters
+		// 	memoryCost: 19456,
+		// 	timeCost: 2,
+		// 	outputLen: 32,
+		// 	parallelism: 1
+		// });
+		const salt = generateSalt();
+		const passwordHash = await hash(password, salt);
 
 		try {
-			await db.insert(table.user).values({ id: userId, username, passwordHash });
+			await db.insert(table.user).values({ id: userId, username, passwordHash } as table.User);
 
 			const sessionToken = auth.generateSessionToken();
 			const session = await auth.createSession(sessionToken, userId);
@@ -91,17 +98,4 @@ function generateUserId() {
 	const bytes = crypto.getRandomValues(new Uint8Array(15));
 	const id = encodeBase32LowerCase(bytes);
 	return id;
-}
-
-function validateUsername(username: unknown): username is string {
-	return (
-		typeof username === 'string' &&
-		username.length >= 3 &&
-		username.length <= 31 &&
-		/^[a-z0-9_-]+$/.test(username)
-	);
-}
-
-function validatePassword(password: unknown): password is string {
-	return typeof password === 'string' && password.length >= 6 && password.length <= 255;
 }
