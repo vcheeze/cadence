@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { Card } from '$lib/components/ui/card';
   import { Button } from '$lib/components/ui/button';
   import { Calendar } from '$lib/components/ui/calendar';
@@ -89,4 +89,5 @@
       {/each}
     </div>
   </div>
-</div>
+</div> -->
+<div>Plan Page</div>

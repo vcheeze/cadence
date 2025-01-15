@@ -1,19 +1,19 @@
-import { fail, redirect } from "@sveltejs/kit";
+import { fail, redirect } from '@sveltejs/kit';
 
-import { verify } from '@node-rs/argon2';
-import { eq } from "drizzle-orm";
+// import { verify } from '@node-rs/argon2';
+import { eq } from 'drizzle-orm';
 
 import * as auth from '$lib/server/auth';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
-import { validateEmail, validatePassword } from "$lib/utils/auth";
-import type { Actions, PageServerLoad } from "./$types";
+import { validateEmail, validatePassword, verify } from '$lib/utils/auth';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
-  if (locals.user) {
-    return redirect(302, '/dashboard');
-  }
-  return {};
+	if (locals.user) {
+		return redirect(302, '/dashboard');
+	}
+	return {};
 };
 
 export const actions: Actions = {
@@ -38,12 +38,13 @@ export const actions: Actions = {
 			return fail(400, { message: 'Incorrect email or password' });
 		}
 
-		const validPassword = await verify(existingUser.passwordHash, password, {
-			memoryCost: 19456,
-			timeCost: 2,
-			outputLen: 32,
-			parallelism: 1
-		});
+		// const validPassword = await verify(existingUser.passwordHash, password, {
+		// 	memoryCost: 19456,
+		// 	timeCost: 2,
+		// 	outputLen: 32,
+		// 	parallelism: 1
+		// });
+		const validPassword = await verify(password, existingUser.passwordHash);
 		if (!validPassword) {
 			return fail(400, { message: 'Incorrect email or password' });
 		}
@@ -51,7 +52,7 @@ export const actions: Actions = {
 		const sessionToken = auth.generateSessionToken();
 		const session = await auth.createSession(sessionToken, existingUser.id);
 		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
-		
+
 		return redirect(302, '/dashboard');
-	},
+	}
 };

@@ -1,3 +1,62 @@
+const SALT_SIZE = 16; // bytes
+const KEY_SIZE = 256; // bits
+const ITERATIONS = 310000; // OWASP recommended minimum
+
+function encodeBase64(buffer: ArrayBuffer): string {
+	return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+}
+
+// function decodeBase64(base64: string): ArrayBuffer {
+// 	const binary = atob(base64);
+// 	const bytes = new Uint8Array(binary.length);
+// 	for (let i = 0; i < binary.length; i++) {
+// 		bytes[i] = binary.charCodeAt(i);
+// 	}
+// 	return bytes.buffer;
+// }
+
+export function generateSalt() {
+	const saltArray = crypto.getRandomValues(new Uint8Array(SALT_SIZE));
+	return encodeBase64(saltArray.buffer);
+}
+
+export async function hash(password: string, salt: string): Promise<string> {
+	const encoder = new TextEncoder();
+
+	const keyMaterial = await crypto.subtle.importKey(
+		'raw',
+		encoder.encode(password),
+		{ name: 'PBKDF2' },
+		false,
+		['deriveBits']
+	);
+
+	const derivedBits = await crypto.subtle.deriveBits(
+		{
+			name: 'PBKDF2',
+			salt: encoder.encode(salt),
+			iterations: ITERATIONS,
+			hash: 'SHA-256'
+		},
+		keyMaterial,
+		KEY_SIZE
+	);
+
+	return `${salt}:${encodeBase64(derivedBits)}`;
+}
+
+export async function verify(password: string, storedHash: string) {
+	const [salt, expectedHash] = storedHash.split(':');
+
+	if (!salt || !expectedHash) {
+		throw new Error('Invalid stored hash format');
+	}
+
+	const computedHash = await hash(password, salt);
+
+	return storedHash === computedHash;
+}
+
 export function validateUsername(username: unknown): username is string {
 	// Check if username is a string
 	if (typeof username !== 'string') {
