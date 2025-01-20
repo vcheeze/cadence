@@ -34,7 +34,6 @@ export const actions: Actions = {
       where: eq(table.readingPlanTemplate.id, templateId),
       with: { entries: true }
     });
-    console.log('planTemplate :>> ', planTemplate);
     if (!planTemplate) {
       return fail(404, { message: 'Template not found' });
     }
@@ -52,6 +51,7 @@ export const actions: Actions = {
         userId: locals.session.userId,
         templateId,
         isPublic: false,
+        schedulePattern: null,
         lastCompletedDate: null,
         currentStreak: null,
         longestStreak: null,

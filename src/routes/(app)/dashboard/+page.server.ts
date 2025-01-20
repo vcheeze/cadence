@@ -7,9 +7,12 @@ import type { PageServerLoad, Actions } from './$types';
 export const load: PageServerLoad = async ({ locals }) => {
   if (!locals.session) throw redirect(302, '/login');
 
-  const plans = await db.select().from(table.readingPlan).where(eq(table.readingPlan.userId, locals.session.userId)); // how to include entries?
+  const plan = await db.query.readingPlan.findFirst({
+    where: eq(table.readingPlan.userId, locals.session.userId),
+    with: { entries: { with: { entryTemplate: true }, orderBy: (entries, { asc }) => [asc(entries.scheduledDate)] } }
+  });
 
-  return { plans };
+  return { plan };
 };
 
 export const actions: Actions = {
