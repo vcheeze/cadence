@@ -40,7 +40,7 @@
 		<Button href="/dashboard/new">Get Started Now</Button>
 	</Card.Root>
 {:else}
-	<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+	<h1 class="scroll-m-20 font-serif text-4xl font-extrabold tracking-tight lg:text-5xl">
 		{data.plan.name}
 	</h1>
 	<div>
