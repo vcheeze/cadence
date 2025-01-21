@@ -11,6 +11,23 @@ import {
 	timestamp
 } from 'drizzle-orm/pg-core';
 
+// types for josnb fields
+export type SchedulePattern = {
+	daysPerPeriod?: number, // e.g. 5 days per week for weekly type, or 25 days per month for monthly type
+	allowedDays?: (0 | 1 | 2 | 3 | 4 | 5 | 6)[] // 0 - Sunday, 1 - Monday, etc
+	excludedDates?: string[], // holidays etc
+  advancedOptions?: {
+    type: 'weekdays' | 'everyN' | 'specific',
+    specificDays?: number[],
+    spacing?: number,
+  }
+};
+
+export type CustomPattern = {
+	totalReadings: number;
+	currentReadingNumber: number; // the next sequence number that should be read
+};
+
 export const frequencyEnum = pgEnum('frequency_type', ['daily', 'weekly', 'monthly', 'custom', 'undefined']);
 // export const readingStatusEnum = pgEnum('reading_status', [
 // 	'not_started',
@@ -83,8 +100,8 @@ export const readingPlanTemplate = pgTable('reading_plan_template', {
 	id: text('id').primaryKey(),
 	name: text('name').notNull(),
 	description: text('description'),
-	frequency: frequencyEnum('frequency_type').notNull(),
-	schedulePattern: jsonb('schedule_pattern'), // for custom patterns, see SchedulePattern type below
+	frequency: frequencyEnum('frequency').notNull(),
+	schedulePattern: jsonb('schedule_pattern').$type<SchedulePattern>(), // for custom patterns, see SchedulePattern type below
 	duration: integer('duration').notNull(), // in days
 	totalReadings: integer('total_readings').notNull(),
 	metadata: jsonb('metadata'), // additional flexible data
@@ -99,7 +116,7 @@ export const readingEntryTemplate = pgTable('reading_entry_template', {
   templateId: text('template_id')
     .notNull()
     .references(() => readingPlanTemplate.id, { onDelete: 'cascade' }),
-  sequenceNumber: integer('sequenceNumber').notNull(), // sequence number within the reading plan e.g. 1, 2, 3, ...
+  sequenceNumber: integer('sequence_number').notNull(), // sequence number within the reading plan e.g. 1, 2, 3, ...
   readingText: text('reading_text').notNull(), // e.g. "Genesis 1-2, John 1:1-18"
   description: text('description'),
   createdAt: timestamp('created_at').defaultNow(),
@@ -113,6 +130,7 @@ export const readingPlan = pgTable('reading_plan', {
 		.references(() => user.id, { onDelete: 'cascade' }),
 	templateId: text('template_id').references(() => readingPlanTemplate.id),
 	name: text('name').notNull(),
+	schedulePattern: jsonb('schedule_pattern').$type<CustomPattern>(), // for custom patterns, when plans differ from template, see CustomPattern type below
 	startDate: date('start_date').notNull(),
 	endDate: date('end_date'),
 	lastCompletedDate: date('last_completed_date'),
@@ -133,7 +151,7 @@ export const readingEntry = pgTable('reading_entry', {
   entryTemplateId: text('reading_entry_template_id')
     .notNull()
     .references(() => readingEntryTemplate.id),
-	sequenceNumber: integer('day').notNull(),
+	sequenceNumber: integer('sequence_number').notNull(),
 	scheduledDate: date('scheduled_date').notNull(),
 	// notes: text('notes'),
 	// status: readingStatusEnum('status').default('not_started'),
@@ -162,6 +180,29 @@ export const readingEntryTemplateRelations = relations(readingEntryTemplate, ({ 
 	readingEntries: many(readingEntry),
 }));
 
+export const readingPlanRelations = relations(readingPlan, ({ one, many }) => ({
+	user: one(user, {
+		fields: [readingPlan.userId],
+		references: [user.id],
+	}),
+	template: one(readingPlanTemplate, {
+		fields: [readingPlan.templateId],
+		references: [readingPlanTemplate.id],
+	}),
+	entries: many(readingEntry),
+}));
+
+export const readingEntryRelations = relations(readingEntry, ({ one }) => ({
+	plan: one(readingPlan, {
+		fields: [readingEntry.planId],
+		references: [readingPlan.id],
+	}),
+	entryTemplate: one(readingEntryTemplate, {
+		fields: [readingEntry.entryTemplateId],
+		references: [readingEntryTemplate.id],
+	}),
+}));
+
 export type User = typeof user.$inferSelect;
 export type Session = typeof session.$inferSelect;
 export type UserPreference = typeof userPreference.$inferSelect;
@@ -169,15 +210,3 @@ export type ReadingPlanTemplate = typeof readingPlanTemplate.$inferSelect;
 export type ReadingEntryTemplate = typeof readingEntryTemplate.$inferSelect;
 export type ReadingPlan = typeof readingPlan.$inferSelect;
 export type ReadingEntry = typeof readingEntry.$inferSelect;
-
-// types for josnb fields
-export type SchedulePattern = {
-	daysPerPeriod?: number, // e.g. 5 days per week for weekly type, or 25 days per month for monthly type
-	allowedDays?: (0 | 1 | 2 | 3 | 4 | 5 | 6)[] // 0 - Sunday, 1 - Monday, etc
-	excludedDates?: string[], // holidays etc
-  advancedOptions?: {
-    type: 'weekdays' | 'everyN' | 'specific',
-    specificDays?: number[],
-    spacing?: number,
-  }
-};
