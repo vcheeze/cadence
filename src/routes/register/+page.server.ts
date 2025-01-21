@@ -30,7 +30,7 @@ export const actions: Actions = {
 		const email = formData.get('email');
 		const password = formData.get('password');
 
-		// TODO validate name and username
+		// TODO validate name
 		if (username && !validateUsername(username)) {
 			return fail(400, { message: 'Invalid username' });
 		}
