@@ -42,10 +42,10 @@
 	class="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:underline"
 	><ChevronLeft class="size-3" /> Back to Dashboard</a
 >
-<h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+<h1 class="scroll-m-20 font-serif text-4xl font-extrabold tracking-tight lg:text-5xl">
 	Add a Reading Plan
 </h1>
-<p class="leading-7 [&:not(:first-child)]:mt-6">
+<p class="font-serif leading-7 [&:not(:first-child)]:mt-6">
 	Add a reading plan to keep track of your progress and share it with friends who will keep you
 	accountable.
 </p>
