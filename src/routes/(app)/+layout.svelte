@@ -13,7 +13,7 @@
 <ParaglideJS {i18n}>
 	<ModeWatcher />
 	<Toaster />
-  <div class="min-h-screen p-8 max-sm:p-6">
+  <div class="min-h-screen py-8 max-sm:py-6">
     {@render children()}
   </div>
 </ParaglideJS>
