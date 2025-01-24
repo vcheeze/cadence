@@ -54,8 +54,6 @@
 			return inView(
 				node,
 				(target) => {
-					// console.log('info :>> ', info);
-					// const { target } = info;
 					target.style.opacity = '0';
 					target.style.transform = 'translateY(20px)';
 
@@ -77,12 +75,16 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Cadence - Track Your Bible Reading Journey</title>
+</svelte:head>
+
 <div class="min-h-screen bg-background">
 	<!-- Hero Section -->
 	<header
 		class="container mx-auto bg-gradient-to-r from-stone-200 via-stone-100 to-stone-50 px-4 py-24 text-center dark:from-stone-800 dark:via-stone-900 dark:to-stone-950"
 	>
-		<h1 class="mb-4 font-serif text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+		<h1 class="mb-4 scroll-m-20 font-serif text-4xl font-bold lg:text-5xl xl:text-6xl">
 			Track Your Bible Reading Journey
 		</h1>
 		<p class="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground">

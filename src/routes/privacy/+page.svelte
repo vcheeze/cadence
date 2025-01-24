@@ -1,42 +1,87 @@
 <script>
 	import * as Card from '$lib/components/ui/card';
 
-	let companyName = 'Cadence';
-	let contactEmail = 'support@cadence.com';
+	const contactEmail = 'support@cadence.com';
 </script>
 
-<div class="container mx-auto px-4 py-16">
-	<!-- Privacy Policy Section -->
-	<section id="privacy-policy" class="mb-16">
-		<Card.Root>
-			<Card.Header>
-				<Card.Title class="mb-8 text-4xl font-bold">Privacy Policy</Card.Title>
-			</Card.Header>
-			<Card.Content>
-				<p class="mb-4">
-					At {companyName}, we value your privacy and are committed to protecting your personal
-					information. This Privacy Policy outlines how we collect, use, and safeguard your data.
-				</p>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">Information We Collect</h2>
-				<ul class="mb-4 list-disc pl-8">
-					<li>Personal information you provide when signing up (e.g., name, email address).</li>
-					<li>Usage data, such as app interactions and preferences.</li>
-					<li>Technical data, including IP address and device information.</li>
-				</ul>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">How We Use Your Information</h2>
-				<ul class="mb-4 list-disc pl-8">
-					<li>To provide and improve our services.</li>
-					<li>To communicate updates and promotions.</li>
-					<li>To ensure security and prevent fraud.</li>
-				</ul>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">Your Rights</h2>
-				<p class="mb-4">
-					You have the right to access, update, or delete your personal information. For assistance,
-					please contact us at <a href={`mailto:${contactEmail}`} class="text-primary underline"
-						>{contactEmail}</a
-					>.
-				</p>
-			</Card.Content>
-		</Card.Root>
-	</section>
+<div class="container px-4 py-8">
+	<Card.Root>
+		<Card.Header>
+			<Card.Title class="font-serif text-3xl">Privacy Policy</Card.Title>
+		</Card.Header>
+		<Card.Content>
+			<h3 class="scroll-m-20 font-serif text-2xl font-semibold tracking-tight">Introduction</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				Welcome to Cadence ("we," "our," or "us"). We respect your privacy and are committed to
+				protecting your personal data. This privacy policy explains how we handle your information
+				when you use our Bible reading progress tracking and accountability partnership service.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Information We Collect
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				We collect and process the following information:
+			</p>
+			<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+				<li>Account information (email address, name, and password)</li>
+				<li>Bible reading progress data</li>
+				<li>Partnership connections and shared progress information</li>
+				<li>Usage data and analytics</li>
+			</ul>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				How We Use Your Information
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">We use your information to:</p>
+			<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+				<li>Provide and maintain the Cadence service</li>
+				<li>Track and display your Bible reading progress</li>
+				<li>Enable accountability partnerships and progress sharing</li>
+				<li>Improve and optimize our service</li>
+				<li>Send important updates about your account or the service</li>
+			</ul>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Data Sharing and Partnerships
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				Your reading progress is only shared with accountability partners you explicitly choose to
+				connect with. We do not sell your personal data to third parties.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Data Security
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				We implement appropriate security measures to protect your personal information. However, no
+				method of transmission over the internet is 100% secure.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">Your Rights</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">You have the right to:</p>
+			<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+				<li>Access your personal data</li>
+				<li>Correct inaccurate data</li>
+				<li>Request deletion of your data</li>
+				<li>Withdraw consent for data processing</li>
+			</ul>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">Contact Us</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				If you have questions about this privacy policy, please contact us at
+				<a href={`mailto:${contactEmail}`} class="text-primary underline">{contactEmail}</a>
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Updates to This Policy
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				We may update this privacy policy from time to time. We will notify you of any significant
+				changes.
+			</p>
+
+			<p class="mt-8 text-sm text-muted-foreground">Last updated: January 22, 2025</p>
+		</Card.Content>
+	</Card.Root>
 </div>
