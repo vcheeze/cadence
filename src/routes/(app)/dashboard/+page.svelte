@@ -32,6 +32,10 @@
 	);
 </script>
 
+<svelte:head>
+	<title>Dashboard | Cadence</title>
+</svelte:head>
+
 {#if !data.plan}
 	<Card.Root class="space-y-4 p-6 text-center">
 		<p class="leading-7 [&:not(:first-child)]:mt-6">
@@ -54,7 +58,6 @@
 		>
 			<Share2 class="size-4" />
 		</Button>
-		<Button></Button>
 	</div>
 	<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 		<Card.Root>

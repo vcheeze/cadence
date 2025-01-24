@@ -1,44 +1,95 @@
-<script>
+<script lang="ts">
 	import * as Card from '$lib/components/ui/card';
 
-	let companyName = 'Cadence';
+	const contactEmail = 'support@cadence.com';
 </script>
 
-<div class="container mx-auto px-4 py-16">
-	<!-- Terms of Service Section -->
-	<section id="terms-of-service">
-		<Card.Root>
-			<Card.Header>
-				<Card.Title class="mb-8 text-4xl font-bold">Terms of Service</Card.Title>
-			</Card.Header>
-			<Card.Content>
-				<p class="mb-4">
-					By using {companyName}'s services, you agree to comply with the following terms and
-					conditions. Please read them carefully.
-				</p>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">User Responsibilities</h2>
-				<ul class="mb-4 list-disc pl-8">
-					<li>Provide accurate information during registration.</li>
-					<li>Use the app in compliance with applicable laws.</li>
-					<li>Avoid any actions that could harm the platform or its users.</li>
-				</ul>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">Prohibited Activities</h2>
-				<ul class="mb-4 list-disc pl-8">
-					<li>Unauthorized access or use of the platform.</li>
-					<li>Uploading harmful or illegal content.</li>
-					<li>Impersonating others or providing false information.</li>
-				</ul>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">Limitation of Liability</h2>
-				<p class="mb-4">
-					{companyName} is not liable for any damages resulting from misuse of the platform. Our total
-					liability is limited to the amount you have paid for the service.
-				</p>
-				<h2 class="mb-4 mt-8 text-2xl font-semibold">Changes to Terms</h2>
-				<p class="mb-4">
-					We may update these terms from time to time. Continued use of the platform constitutes
-					acceptance of the revised terms.
-				</p>
-			</Card.Content>
-		</Card.Root>
-	</section>
+<div class="container px-4 py-8">
+	<Card.Root>
+		<Card.Header>
+			<Card.Title class="font-serif text-3xl">Terms of Service</Card.Title>
+		</Card.Header>
+		<Card.Content>
+			<h3 class="scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Agreement to Terms
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				By accessing or using Cadence, you agree to be bound by these Terms of Service. If you
+				disagree with any part of these terms, you may not access the service.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Account Registration
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">To use Cadence, you must:</p>
+			<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+				<li>Create an account with accurate information</li>
+				<li>Maintain the security of your account credentials</li>
+				<li>Promptly notify us of any unauthorized access</li>
+			</ul>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Acceptable Use
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">You agree to use Cadence only for:</p>
+			<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+				<li>Tracking personal Bible reading progress</li>
+				<li>Forming accountability partnerships</li>
+				<li>Sharing progress with explicit consent</li>
+			</ul>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Prohibited Activities
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">You must not:</p>
+			<ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+				<li>Share account credentials</li>
+				<li>Harass or spam other users</li>
+				<li>Attempt to access unauthorized data</li>
+				<li>Use the service for any illegal purpose</li>
+			</ul>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Intellectual Property
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				Cadence and its original content, features, and functionality are owned by us and are
+				protected by international copyright, trademark, and other intellectual property laws.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">Termination</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				We may terminate or suspend your account immediately for any violation of these Terms of
+				Service.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Limitation of Liability
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				Cadence is provided "as is" without warranties of any kind. We are not liable for any
+				damages arising from your use of the service.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Changes to Terms
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				We reserve the right to modify these terms at any time. We will notify users of significant
+				changes.
+			</p>
+
+			<h3 class="mt-8 scroll-m-20 font-serif text-2xl font-semibold tracking-tight">
+				Contact Information
+			</h3>
+			<p class="leading-7 [&:not(:first-child)]:mt-6">
+				Questions about these Terms should be sent to <a
+					href={`mailto:${contactEmail}`}
+					class="text-primary underline">{contactEmail}</a
+				>
+			</p>
+
+			<p class="mt-8 text-sm text-muted-foreground">Last updated: January 22, 2025</p>
+		</Card.Content>
+	</Card.Root>
 </div>

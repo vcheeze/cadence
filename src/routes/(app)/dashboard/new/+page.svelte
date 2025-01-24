@@ -45,7 +45,7 @@
 <h1 class="scroll-m-20 font-serif text-4xl font-extrabold tracking-tight lg:text-5xl">
 	Add a Reading Plan
 </h1>
-<p class="font-serif leading-7 [&:not(:first-child)]:mt-6">
+<p class="leading-7 [&:not(:first-child)]:mt-6">
 	Add a reading plan to keep track of your progress and share it with friends who will keep you
 	accountable.
 </p>
