@@ -37,7 +37,7 @@
 
 {#if !data.plan}
 	<Card.Root class="space-y-4 p-6 text-center">
-		<p class="leading-7 [&:not(:first-child)]:mt-6">
+		<p class="leading-7 not-first:mt-6">
 			Looks like you haven't started tracking your Bible reading yet.
 		</p>
 		<Button href="/dashboard/new">Get Started Now</Button>
@@ -76,7 +76,7 @@
 				</div>
 				<Progress value={realProgress} />
 				<div class="flex items-center gap-3">
-					<p class="leading-7 [&:not(:first-child)]:mt-6">Already done?</p>
+					<p class="leading-7 not-first:mt-6">Already done?</p>
 					<form method="post" use:enhance>
 						<input type="hidden" name="planId" value={data.plan.id} />
 						<input
@@ -101,11 +101,11 @@
 			</Card.Header>
 			<Card.Content>
 				{#if plusMinus === 0}
-					<p class="leading-7 [&:not(:first-child)]:mt-6">
+					<p class="leading-7 not-first:mt-6">
 						You are exactly on track. Be encouraged and press on!
 					</p>
 				{:else}
-					<p class="leading-7 [&:not(:first-child)]:mt-6">
+					<p class="leading-7 not-first:mt-6">
 						You are <span class={cn(plusMinus > 0 ? 'text-emerald-600' : 'text-rose-600')}
 							>{Math.abs(plusMinus)} days {plusMinus > 0 ? 'ahead' : 'behind'}</span
 						>. Be encouraged and press on!
