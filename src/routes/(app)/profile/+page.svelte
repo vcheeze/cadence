@@ -8,7 +8,7 @@
 	let { data } = $props();
 </script>
 
-<div class="container flex gap-8">
+<div class="container flex max-sm:flex-col gap-8">
 	<SideNav />
 	<h1 class="scroll-m-20 font-serif text-4xl font-extrabold tracking-tight lg:text-5xl">
 		Hello, {data.user.name}
