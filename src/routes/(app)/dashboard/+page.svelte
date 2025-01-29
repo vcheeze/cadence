@@ -22,9 +22,8 @@
 	);
 	const idealProgress = $derived(
 		Math.ceil(
-			(DateTime.fromJSDate(new Date()).ordinal /
-				(data.plan?.schedulePattern?.totalReadings ?? 365)) *
-				365
+			(DateTime.fromJSDate(new Date()).ordinal / 365) *
+				(data.plan?.schedulePattern?.totalReadings ?? 365)
 		)
 	);
 	const plusMinus = $derived(
@@ -90,9 +89,7 @@
 							name="currentReadingNumber"
 							value={(data.plan.schedulePattern?.currentReadingNumber ?? 1) + 1}
 						/>
-						<Button variant="secondary" type="submit"
-							>Mark it as done <Check class="ml-2 size-4" /></Button
-						>
+						<Button type="submit">Mark it as done <Check class="ml-2 size-4" /></Button>
 					</form>
 				</div>
 			</Card.Content>
@@ -133,5 +130,34 @@
 				{/if}
 			</Card.Content>
 		</Card.Root>
+	</div>
+	<div>
+		<h2
+			class="scroll-m-20 pb-2 font-serif text-3xl font-semibold tracking-tight transition-colors first:mt-0"
+		>
+			Progress Overview
+		</h2>
+		<p class="text-xs leading-7 text-muted-foreground">Start</p>
+		<div class="my-1 flex flex-wrap justify-center gap-6 lg:gap-8">
+			{#each Array.from({ length: data.plan?.schedulePattern?.totalReadings ?? 0 }, (_, index) => index + 1) as readingEntry}
+				{#if readingEntry === data.plan?.schedulePattern?.currentReadingNumber}
+					<div class="size-1.5 rounded-full bg-foreground lg:size-2"></div>
+				{:else if readingEntry === idealProgress}
+					<div class="size-1.5 rounded-full bg-muted-foreground/50 lg:size-2"></div>
+				{:else}
+					<div
+						class={cn(
+							'size-1.5 rounded-full lg:size-2',
+							readingEntry <= (data.plan?.schedulePattern?.currentReadingNumber ?? 1)
+								? 'bg-foreground'
+								: readingEntry <= idealProgress
+									? 'bg-muted-foreground/50'
+									: 'bg-muted'
+						)}
+					></div>
+				{/if}
+			{/each}
+		</div>
+		<p class="text-right text-xs leading-7 text-muted-foreground">End</p>
 	</div>
 {/if}

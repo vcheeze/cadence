@@ -36,7 +36,7 @@ export default defineConfig({
 					}
 				]
 			},
-			// strategies: 'generateSW',
+			strategies: 'generateSW',
 			devOptions: {
 				enabled: true
 			}

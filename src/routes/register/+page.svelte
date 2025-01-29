@@ -9,6 +9,10 @@
   let { form }: { form: ActionData } = $props();
 </script>
 
+<svelte:head>
+  <title>Sign Up | Cadence</title>
+</svelte:head>
+
 <div class="flex h-screen w-full items-center justify-center px-4">
   <Card.Root class="mx-auto max-w-sm">
     <Card.Header>
