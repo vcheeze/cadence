@@ -59,7 +59,6 @@ export const actions: Actions = {
 			const session = await auth.createSession(sessionToken, userId);
 			auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 		} catch (err) {
-			console.log('err :>> ', err);
 			return fail(500, { message: 'An error has occurred' });
 		}
 		return redirect(302, '/dashboard');

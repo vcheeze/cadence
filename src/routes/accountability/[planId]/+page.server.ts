@@ -9,10 +9,9 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const plan = await db.query.readingPlan.findFirst({
-		where: eq(table.readingPlan.id, params.planId)
+		where: eq(table.readingPlan.id, params.planId),
+		with: { user: { columns: { username: true } } }
 	});
-
-	console.log('plan :>> ', plan);
 
 	if (!plan) return fail(404, { message: 'Plan not found or not public' });
 

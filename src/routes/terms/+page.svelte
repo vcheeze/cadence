@@ -8,11 +8,11 @@
 	<SideNav />
 	<div>
 		<h1 class="mb-6 scroll-m-20 font-serif text-4xl font-extrabold tracking-tight lg:text-5xl">
-			Terms of Service
+			Terms of Use
 		</h1>
 		<h3 class="scroll-m-20 font-serif text-2xl font-semibold tracking-tight">Agreement to Terms</h3>
 		<p class="leading-7 not-first:mt-6">
-			By accessing or using Cadence, you agree to be bound by these Terms of Service. If you
+			By accessing or using Cadence, you agree to be bound by these Terms of Use. If you
 			disagree with any part of these terms, you may not access the service.
 		</p>
 

@@ -251,7 +251,7 @@
 					href="/terms"
 					class="text-sm text-muted-foreground transition-colors hover:text-foreground"
 				>
-					Terms of Service
+					Terms of Use
 				</a>
 				<a
 					href="/contact"

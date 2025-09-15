@@ -12,7 +12,7 @@
 		{ name: 'Profile', link: '/profile' },
 		{ name: 'About', link: '/about' },
 		{ name: 'Privacy Policy', link: '/privacy' },
-		{ name: 'Terms of Service', link: '/terms' }
+		{ name: 'Terms of Use', link: '/terms' }
 	];
 </script>
 
